@@ -1,6 +1,6 @@
 import numpy as np
 
-def power_law(freq, freq0, beta, lmin, lmax, ell0, alpha, amplitude):
+def power_law(freq, freq0, beta, ells, ell0, alpha, amplitude):
     """ Cross spectrum of a power law in frequency and multipoles
 
     Parameters
@@ -36,8 +36,6 @@ def power_law(freq, freq0, beta, lmin, lmax, ell0, alpha, amplitude):
 
     """
 
-    ells = np.arange(lmin, lmax+1, 1.) / ell0
-
     try:
         sed = (freq / freq0)**beta[:, np.newaxis]  # (TEB, freq)
         sed_t = sed[:, np.newaxis, :, np.newaxis, np.newaxis]  # (TEB, 1, freq, 1, 1)
@@ -60,4 +58,4 @@ def power_law(freq, freq0, beta, lmin, lmax, ell0, alpha, amplitude):
     except AttributeError:
         pass
 
-    return amplitude * ells**alpha * sed * sed_t
+    return amplitude * (ells / ell0)**alpha * sed * sed_t

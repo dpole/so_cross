@@ -1,2 +1,2 @@
-Library for evaluation of cross spectra
-***************************************
+Library for the evaluation of cross-spectra
+*******************************************
